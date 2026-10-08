@@ -1,4 +1,4 @@
-# ⚽ FIFA World Cup 2026 – Player Performance EDA
+# FIFA World Cup 2026 – Player Performance EDA
 
 Aplicación interactiva construida con **Python y Streamlit** para el **Análisis Exploratorio de Datos (EDA)** del rendimiento de jugadores y selecciones en el FIFA World Cup 2026.
 
@@ -31,10 +31,11 @@ La app tiene 4 módulos que se eligen desde el **sidebar**:
 
 ---
 
+
 ## Capturas
 
 ### Home
-![Home](img/home.png)
+![Home]([img/home.png](https://github.com/lvidal26/Trabajo-Caso-FIFA-World-Cup---Luis-Vidal/blob/main/home.png))
 
 ### Carga del dataset
 ![Carga](img/carga_dataset.png)
