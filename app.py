@@ -316,7 +316,7 @@ def page_home() -> None:
     col1, col2, col3 = st.columns(3)
     with col1:
         st.subheader("👤 Autor")
-        st.markdown(f"**{AUTHOR}**  \n{COURSE}  \nAño {YEAR}")
+        st.markdown(f"**{AUTOR}**  \n{CURSO}  \nAño {AÑO}")
     with col2:
         st.subheader("📊 Dataset")
         st.markdown(
