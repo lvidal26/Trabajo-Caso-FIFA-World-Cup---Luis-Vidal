@@ -467,7 +467,6 @@ def item_4(an: DataAnalyzer) -> None:
         "registros las métricas de rendimiento y físicas valen 0."
     )
     data = an.df.groupby("position", observed=True)["played"].mean().mul(100).reindex(POSITION_ORDER)
-    ax.set_title("Participación efectiva por posición")
     show_fig(fig)
     st.markdown(
         "**Decisión:** se **conservan** todos los registros, pero los análisis de "
