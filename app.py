@@ -467,7 +467,6 @@ def item_4(an: DataAnalyzer) -> None:
         "registros las métricas de rendimiento y físicas valen 0."
     )
     data = an.df.groupby("position", observed=True)["played"].mean().mul(100).reindex(POSITION_ORDER)
-    sns.barplot(x=data.values, y=data.index, hue=data.index, legend=False, ax=ax)
     ax.set_xlabel("% de registros con minutos jugados")
     ax.set_ylabel("")
     ax.set_title("Participación efectiva por posición")
