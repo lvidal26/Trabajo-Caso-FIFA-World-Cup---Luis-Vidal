@@ -13,11 +13,10 @@ App interactiva en **Streamlit** para el análisis exploratorio del rendimiento 
 | **Análisis exploratorio** | 10 ítems en tabs: info general, clasificación de variables, descriptivas, faltantes, distribuciones, categóricas, análisis bivariado, explorador con filtros y hallazgos |
 | **Conclusiones** | 5 conclusiones con la evidencia que las respalda |
 
+## Carga DataSet
 | Carga del dataset |
-|---|---|
 | ![Carga](https://github.com/lvidal26/Trabajo-Caso-FIFA-World-Cup---Luis-Vidal/blob/961ed405e7a36628c8ec2452dded6644f3e3ab94/carga_dataset.png)| 
 | Análisis bivariado |
-|---|---|
 ![EDA](https://github.com/lvidal26/Trabajo-Caso-FIFA-World-Cup---Luis-Vidal/blob/76a8bb9991676240006e25f986f68832d4eead0e/Eda.png) |
 
 | Explorador dinámico | Conclusiones |
