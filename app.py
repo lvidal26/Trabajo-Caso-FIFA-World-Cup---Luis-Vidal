@@ -14,9 +14,6 @@ st.set_page_config(
     layout="wide",
 )
 
-sns.set_theme(style="whitegrid", palette="deep")
-plt.rcParams.update({"figure.dpi": 110, "axes.titleweight": "bold"})
-
 AUTOR = "Luis Aaron Vidal Vela"
 CURSO = "Especialización en Python for Analytics – DMC Institute"
 AÑO = 2026
