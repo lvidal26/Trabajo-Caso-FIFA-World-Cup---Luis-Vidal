@@ -1,18 +1,8 @@
-# =============================================================================
-# FIFA World Cup 2026 – Player Performance EDA
-# Especialización en Python for Analytics – DMC Institute
-# Autor: TU NOMBRE COMPLETO | 2026
-# =============================================================================
-
-# -----------------------------------------------------------------------------
-# 1. IMPORTS
-# -----------------------------------------------------------------------------
 import io
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 
@@ -28,9 +18,6 @@ st.set_page_config(
 sns.set_theme(style="whitegrid", palette="deep")
 plt.rcParams.update({"figure.dpi": 110, "axes.titleweight": "bold"})
 
-# -----------------------------------------------------------------------------
-# 3. CONSTANTES
-# -----------------------------------------------------------------------------
 AUTOR = "Luis Aaron Vidal Vela"
 CURSO = "Especialización en Python for Analytics – DMC Institute"
 AÑO = 2026
