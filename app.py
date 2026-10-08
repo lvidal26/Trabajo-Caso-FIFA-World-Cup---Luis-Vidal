@@ -50,9 +50,6 @@ RESULT_LABELS = {"W": "Victoria", "D": "Empate", "L": "Derrota"}
 POSITION_ORDER = ["Goalkeeper", "Defender", "Midfielder", "Forward"]
 
 
-# -----------------------------------------------------------------------------
-# 4. FUNCIONES PERSONALIZADAS
-# -----------------------------------------------------------------------------
 def classify_columns(df: pd.DataFrame) -> dict:
     """Clasifica las columnas de un DataFrame en numéricas, categóricas y de fecha."""
     dates = df.select_dtypes(include="datetime").columns.tolist()
@@ -110,9 +107,6 @@ def load_csv(source) -> pd.DataFrame:
     return pd.read_csv(source)
 
 
-# -----------------------------------------------------------------------------
-# 5. CLASE PRINCIPAL (POO)
-# -----------------------------------------------------------------------------
 class DataAnalyzer:
     """Encapsula la validación, preparación, estadísticas, visualización y
     filtrado del dataset de rendimiento de jugadores."""
@@ -122,7 +116,6 @@ class DataAnalyzer:
         self.df = df.copy()
         self._prepare()
 
-    # ---------- Carga y validación ----------
     @staticmethod
     def validate(df: pd.DataFrame) -> list:
         """Devuelve las columnas obligatorias que faltan en el archivo."""
@@ -139,7 +132,6 @@ class DataAnalyzer:
         """Registros completos o solo de jugadores que disputaron minutos."""
         return self.df[self.df["played"]] if only_played else self.df
 
-    # ---------- Ítem 1: información general ----------
     def info_text(self) -> str:
         buffer = io.StringIO()
         self.raw.info(buf=buffer)
@@ -155,12 +147,10 @@ class DataAnalyzer:
     def null_count(self) -> int:
         return int(self.raw.isna().sum().sum())
 
-    # ---------- Ítem 2: clasificación ----------
     def classify_variables(self) -> dict:
         return classify_columns(self.raw.assign(
             match_date=pd.to_datetime(self.raw["match_date"], errors="coerce")))
 
-    # ---------- Ítem 3: estadísticas descriptivas ----------
     def describe_numeric(self, columns: list, only_played: bool = True) -> pd.DataFrame:
         data = self.data(only_played)[columns]
         desc = data.describe().T
@@ -184,7 +174,6 @@ class DataAnalyzer:
                          "% Outliers": round(n_out / len(data) * 100, 2)})
         return pd.DataFrame(rows)
 
-    # ---------- Ítem 4: faltantes ----------
     def missing_table(self) -> pd.DataFrame:
         missing = self.raw.isna().sum()
         return pd.DataFrame({
@@ -196,14 +185,12 @@ class DataAnalyzer:
         n_zero = int((~self.df["played"]).sum())
         return {"n": n_zero, "pct": n_zero / len(self.df) * 100}
 
-    # ---------- Ítem 6: categóricas ----------
     def frequency_table(self, column: str, only_played: bool = False) -> pd.DataFrame:
         data = self.data(only_played)[column]
         freq = data.value_counts()
         return pd.DataFrame({"Frecuencia": freq,
                              "Proporción (%)": (freq / freq.sum() * 100).round(2)})
 
-    # ---------- Ítem 7: numérico vs categórico ----------
     def group_stats(self, num: str, cat: str, only_played: bool = True) -> pd.DataFrame:
         data = self.data(only_played)
         return (data.groupby(cat, observed=True)[num]
@@ -217,7 +204,6 @@ class DataAnalyzer:
         minutes = grouped["minutes_played"].sum()
         return (totals.div(minutes, axis=0) * 90).round(3)
 
-    # ---------- Ítem 8: categórico vs categórico ----------
     def crosstab(self, row: str, col: str, normalize=False,
                  only_played: bool = False) -> pd.DataFrame:
         data = self.data(only_played)
@@ -233,7 +219,6 @@ class DataAnalyzer:
         ct["% Victorias"] = (ct["W"] / ct["Partidos"] * 100).round(1)
         return ct.sort_values("% Victorias", ascending=False)
 
-    # ---------- Ítem 9: filtros ----------
     def filter_data(self, filters: dict, ranges: dict, only_played: bool = True) -> pd.DataFrame:
         data = self.data(only_played)
         for col, values in filters.items():
@@ -256,7 +241,6 @@ class DataAnalyzer:
         last = self.df.sort_values("match_date").groupby("player_id").tail(1)
         return last[["player_name", "team", "position"] + TOURNAMENT_COLUMNS]
 
-    # ---------- Visualizaciones (Altair) ----------
     def plot_hist(self, column: str, by_position: bool, only_played: bool = True):
         """Histograma. Se calcula con NumPy y se dibuja ya agregado (rápido)."""
         data = self.data(only_played)
@@ -343,7 +327,6 @@ class DataAnalyzer:
                                 alt.value("white"), alt.value("black")))
         return (rect + text).properties(title=title, height=max(180, 26 * len(rows)))
 
-    # ---------- Ítem 10 / conclusiones ----------
     def key_metrics(self) -> dict:
         played = self.data(True)
         by_pos = played.groupby("position")
@@ -364,9 +347,6 @@ class DataAnalyzer:
         }
 
 
-# -----------------------------------------------------------------------------
-# 6. MÓDULO 1: HOME
-# -----------------------------------------------------------------------------
 def page_home() -> None:
     st.title(" FIFA World Cup 2026 – Player Performance EDA")
     st.markdown(
@@ -402,10 +382,6 @@ def page_home() -> None:
     )
     st.info(" Ve a **Carga del dataset** en el menú lateral para comenzar.")
 
-
-# -----------------------------------------------------------------------------
-# 7. MÓDULO 2: CARGA DEL DATASET
-# -----------------------------------------------------------------------------
 def page_carga() -> None:
     st.title(" Carga del dataset")
     file = st.file_uploader("Sube el archivo `fifa_world_cup_2026_player_performance.csv`",
@@ -447,9 +423,6 @@ def page_carga() -> None:
     st.dataframe(df.head(n_rows))
 
 
-# -----------------------------------------------------------------------------
-# 8. MÓDULO 3: EDA (10 ÍTEMS)
-# -----------------------------------------------------------------------------
 def item_1(an: DataAnalyzer) -> None:
     st.subheader("Ítem 1 · Información general del dataset")
     st.caption("Estructura, tipos de datos, valores nulos y duplicados.")
@@ -820,10 +793,6 @@ def page_eda() -> None:
     with tabs[9]:
         item_10(an)
 
-
-# -----------------------------------------------------------------------------
-# 9. MÓDULO 4: CONCLUSIONES
-# -----------------------------------------------------------------------------
 def page_conclusiones() -> None:
     st.title(" Conclusiones")
     an = st.session_state.get("analyzer")
@@ -875,9 +844,6 @@ def page_conclusiones() -> None:
             st.caption(f"📎 Evidencia: {evidence}")
 
 
-# -----------------------------------------------------------------------------
-# 10. NAVEGACIÓN (SIDEBAR)
-# -----------------------------------------------------------------------------
 def main() -> None:
     st.sidebar.title(" WORLD CUP 2026")
     page = st.sidebar.radio(
