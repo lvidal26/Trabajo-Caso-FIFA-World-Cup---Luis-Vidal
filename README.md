@@ -15,11 +15,11 @@ App interactiva en **Streamlit** para el análisis exploratorio del rendimiento 
 
 | Carga del dataset | Análisis bivariado |
 |---|---|
-| ![Carga](img/carga.png) | ![EDA](img/eda.png) |
+| ![Carga](img/carga.png) | ![EDA](img/Eda.png) |
 
 | Explorador dinámico | Conclusiones |
 |---|---|
-| ![Filtros](img/filtros.png) | ![Conclusiones](img/conclusiones.png) |
+| ![Filtros](img/filtros.png) | ![Conclusiones](img/Conclusiones.png) |
 
 ## Dataset
 
