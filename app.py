@@ -8,7 +8,6 @@ import streamlit as st
 
 st.set_page_config(
     page_title="FIFA WC 2026 – EDA",
-    page_icon="⚽",
     layout="wide",
 )
 
@@ -369,7 +368,7 @@ class DataAnalyzer:
 # 6. MÓDULO 1: HOME
 # -----------------------------------------------------------------------------
 def page_home() -> None:
-    st.title("⚽ FIFA World Cup 2026 – Player Performance EDA")
+    st.title(" FIFA World Cup 2026 – Player Performance EDA")
     st.markdown(
         "Aplicación interactiva de **Análisis Exploratorio de Datos (EDA)** sobre el "
         "rendimiento de jugadores y selecciones del Mundial 2026. Explora métricas "
@@ -380,17 +379,17 @@ def page_home() -> None:
 
     col1, col2, col3 = st.columns(3)
     with col1:
-        st.subheader("👤 Autor")
+        st.subheader(" Autor")
         st.markdown(f"**{AUTOR}**  \n{CURSO}  \nAño {AÑO}")
     with col2:
-        st.subheader("📊 Dataset")
+        st.subheader(" Dataset")
         st.markdown(
             "`fifa_world_cup_2026_player_performance.csv`  \n"
             "54,600 registros · 75 variables  \n"
             "1,248 jugadores · 1,050 partidos · 48 selecciones"
         )
     with col3:
-        st.subheader("🛠️ Tecnologías")
+        st.subheader(" Tecnologías")
         st.markdown("Python · Pandas · NumPy  \nAltair  \nStreamlit · POO")
 
     st.subheader("¿Qué contiene cada registro?")
@@ -401,14 +400,14 @@ def page_home() -> None:
         "física y puntajes de rendimiento. Algunas variables son **acumuladas del torneo** "
         "y no deben sumarse por partido."
     )
-    st.info("👉 Ve a **Carga del dataset** en el menú lateral para comenzar.")
+    st.info(" Ve a **Carga del dataset** en el menú lateral para comenzar.")
 
 
 # -----------------------------------------------------------------------------
 # 7. MÓDULO 2: CARGA DEL DATASET
 # -----------------------------------------------------------------------------
 def page_carga() -> None:
-    st.title("📂 Carga del dataset")
+    st.title(" Carga del dataset")
     file = st.file_uploader("Sube el archivo `fifa_world_cup_2026_player_performance.csv`",
                             type="csv")
     use_local = False
@@ -418,7 +417,7 @@ def page_carga() -> None:
     source = file if file is not None else (LOCAL_DATASET if use_local else None)
     if source is None:
         if "analyzer" in st.session_state:
-            st.success("✅ Ya hay un dataset cargado. Puedes ir al módulo de análisis.")
+            st.success(" Ya hay un dataset cargado. Puedes ir al módulo de análisis.")
         else:
             st.info("Carga el archivo CSV para habilitar el análisis.")
         return
@@ -436,7 +435,7 @@ def page_carga() -> None:
         return
 
     st.session_state["analyzer"] = DataAnalyzer(df)
-    st.success("✅ Archivo cargado y validado correctamente.")
+    st.success(" Archivo cargado y validado correctamente.")
 
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("Filas", f"{df.shape[0]:,}")
@@ -669,7 +668,7 @@ def item_9(an: DataAnalyzer, only_played: bool) -> None:
     st.subheader("Ítem 9 · Explorador dinámico por parámetros")
     df = an.data(only_played)
 
-    with st.expander("🎛️ Filtros", expanded=True):
+    with st.expander(" Filtros", expanded=True):
         c1, c2, c3 = st.columns(3)
         teams = c1.multiselect("Selección", sorted(df["team"].unique()))
         positions = c2.multiselect("Posición", POSITION_ORDER)
@@ -787,10 +786,10 @@ def item_10(an: DataAnalyzer) -> None:
 
 
 def page_eda() -> None:
-    st.title("🔎 Análisis Exploratorio de Datos")
+    st.title("Análisis Exploratorio de Datos")
     an = st.session_state.get("analyzer")
     if an is None:
-        st.warning("⚠️ Primero carga el dataset en el módulo **Carga del dataset**.")
+        st.warning(" Primero carga el dataset en el módulo **Carga del dataset**.")
         return
 
     only_played = st.sidebar.checkbox(
@@ -826,10 +825,10 @@ def page_eda() -> None:
 # 9. MÓDULO 4: CONCLUSIONES
 # -----------------------------------------------------------------------------
 def page_conclusiones() -> None:
-    st.title("✅ Conclusiones")
+    st.title(" Conclusiones")
     an = st.session_state.get("analyzer")
     if an is None:
-        st.warning("⚠️ Primero carga el dataset en el módulo **Carga del dataset**.")
+        st.warning(" Primero carga el dataset en el módulo **Carga del dataset**.")
         return
     k = an.key_metrics()
     per90 = k["per90"]
@@ -880,14 +879,14 @@ def page_conclusiones() -> None:
 # 10. NAVEGACIÓN (SIDEBAR)
 # -----------------------------------------------------------------------------
 def main() -> None:
-    st.sidebar.title("⚽ WC 2026 EDA")
+    st.sidebar.title(" WORLD CUP 2026")
     page = st.sidebar.radio(
         "Navegación",
         ["Home", "Carga del dataset", "Análisis exploratorio", "Conclusiones"],
     )
     loaded = "analyzer" in st.session_state
     st.sidebar.markdown("---")
-    st.sidebar.caption("Dataset: " + ("✅ cargado" if loaded else "⏳ pendiente"))
+    st.sidebar.caption("Dataset: " + (" cargado" if loaded else " pendiente"))
 
     if page == "Home":
         page_home()
