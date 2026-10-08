@@ -15,7 +15,7 @@ App interactiva en **Streamlit** para el análisis exploratorio del rendimiento 
 
 | Carga del dataset | Análisis bivariado |
 |---|---|
-| ![Carga](img/carga.png) | ![EDA](img/Eda.png) |
+| ![Carga](https://github.com/lvidal26/Trabajo-Caso-FIFA-World-Cup---Luis-Vidal/blob/961ed405e7a36628c8ec2452dded6644f3e3ab94/carga_dataset.png)| ![EDA](img/Eda.png) |
 
 | Explorador dinámico | Conclusiones |
 |---|---|
