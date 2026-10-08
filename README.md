@@ -2,7 +2,7 @@
 
 App interactiva en **Streamlit** para el análisis exploratorio del rendimiento de jugadores del Mundial 2026. No construye modelos predictivos: describe y compara por posición, equipo, fase y jugador.
 
-![Home]([img/home.png](https://github.com/lvidal26/Trabajo-Caso-FIFA-World-Cup---Luis-Vidal/blob/38c43bc6cd0b71a7f72bb404fc07078b54a8b853/home.png))
+![Home](https://github.com/lvidal26/Trabajo-Caso-FIFA-World-Cup---Luis-Vidal/blob/38c43bc6cd0b71a7f72bb404fc07078b54a8b853/home.png)
 
 ## Módulos
 
