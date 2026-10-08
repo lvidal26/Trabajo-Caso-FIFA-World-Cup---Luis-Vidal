@@ -230,7 +230,6 @@ class DataAnalyzer:
     # ---------- Visualizaciones ----------
     def plot_hist(self, column: str, by_position: bool, only_played: bool = True):
         data = self.data(only_played)
-        fig, ax = plt.subplots(figsize=(7, 3.8))
         if by_position:
             sns.histplot(data=data, x=column, hue="position", hue_order=POSITION_ORDER,
                          element="step", stat="density", common_norm=False, bins=30, ax=ax)
