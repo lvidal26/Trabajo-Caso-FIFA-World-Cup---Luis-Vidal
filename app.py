@@ -821,9 +821,6 @@ def page_conclusiones() -> None:
             st.caption(f"📎 Evidencia: {evidence}")
 
 
-# -----------------------------------------------------------------------------
-# 10. NAVEGACIÓN (SIDEBAR)
-# -----------------------------------------------------------------------------
 def main() -> None:
     st.sidebar.title("⚽ WC 2026 EDA")
     page = st.sidebar.radio(
@@ -844,7 +841,7 @@ def main() -> None:
         page_conclusiones()
 
     st.sidebar.markdown("---")
-    st.sidebar.caption(f"{AUTHOR} · {YEAR}")
+    st.sidebar.caption(f"{AUTOR} · {AÑO}")
 
 
 if __name__ == "__main__":
